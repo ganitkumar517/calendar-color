@@ -1,4 +1,15 @@
-<div class="calendar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"/>
+    <title>Document</title>
+</head>
+<body>
+  
+  <div class="calendar">
   <div class="calendar-day">Sun</div>
   <div class="calendar-day">Mon</div>
   <div class="calendar-day">Tue</div>
@@ -48,3 +59,41 @@
   <button id="highlight-button">Highlight Date</button>
   <button id="clear-button">Clear All</button>
 </div>
+  <script>
+        const calendarDays = document.querySelectorAll('.calendar-day');
+        const inputDate = document.getElementById('input-date');
+        const inputColor = document.getElementById('input-color');
+        const highlightButton = document.getElementById('highlight-button');
+        const clearButton = document.getElementById('clear-button');
+        
+        highlightButton.addEventListener('click', () => {
+          const date = inputDate.value;
+          const color = inputColor.value;
+        
+          if (date === '' || date < 1 || date > 31 || color === '') {
+            alert('Please enter a valid date and color');
+            return;
+          }
+        
+          calendarDays.forEach(day => {
+            if (day.innerText === date) {
+              day.style.backgroundColor = color;
+   
+            }
+          });
+        
+          inputDate.value = '';
+          inputColor.value = '';
+        });
+        
+        clearButton.addEventListener('click', () => {
+          calendarDays.forEach(day => {
+            day.style.backgroundColor = '';
+          });
+        
+          inputDate.value = '';
+          inputColor.value = '';
+        });
+        </script>
+</body>
+</html>
